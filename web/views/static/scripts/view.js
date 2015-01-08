@@ -1,0 +1,83 @@
+$(document).on("ready", function() {
+	$("#refresh").on("click", replaceWithRandom);
+	$("#next").on("click", replaceWithNext);
+	$("#prev").on("click", replaceWithPrev);
+	$("#loadmore").on("click", loadMore);
+	$("#goup").on("click", function(event){
+		$('html, body').animate({ scrollTop: 0}, 350);
+	});
+});
+
+function replaceWithNext(){
+	var sid = $(".id").text();
+	$.get("http://vella.bendardenne.be/api/next/" + sid, function(data) {
+		if(data.length > 0)
+		{
+			replace(data[0]);
+			$("#message").html("");
+		}
+		else
+			$("#message").html("<div class='alert alert-error alert-danger'> Aucune autre citation à montrer </div>");
+	})
+}
+
+function replaceWithPrev(){
+	var sid = $(".id").text();
+	$.get("http://vella.bendardenne.be/api/prev/" + sid, function(data) {
+		if(data.length > 0)
+		{
+			replace(data[0]);
+			$("#message").html("");
+		}
+		else
+			$("#message").html("<div class='alert alert-error alert-danger'> Aucune autre citation à montrer </div>");
+	});
+}
+
+function replaceWithRandom() {
+	$.get("http://vella.bendardenne.be/api/random", function(data) {
+		replace(data);
+	});
+}
+
+function replace(newVellism) {
+	$(".vellism > .lead").html(newVellism.text[0]);
+	
+	// Remove possible sub-vellisms
+	$(".vellism > p:not(.lead)").remove();		
+
+	// Add possible new ones
+	for(var i = 1; i < newVellism.text.length; i++)
+		$("<p>" + newVellism.text[i] + "</p>").insertAfter(".vellism > .lead");
+
+	var date = new Date(newVellism.date);
+	$(".id").html(newVellism.sid)	;
+	$(".id").attr("href", "/view/" + newVellism.sid);
+	$(".date").html("Ajouté le " + date.toLocaleDateString());
+	$(".fblink").attr("href", newVellism.url);
+}
+
+function loadMore(){
+	var sid = $(".id").last().text();
+	$.get("http://vella.bendardenne.be/api/prev/" + sid + "?limit=10", function(data)  {
+
+		for(var i = 0; i < data.length; i++){
+			
+			var div = $(".vellism").first().clone();
+			div.find(".lead").html(data[i].text[0])
+			
+			for(var j = 1; j < data[i].text.length; j++)
+				div.append("<p>" + data[i].text[j] + "</p>");
+			
+			div.find(".id").html(data[i].sid)	;
+			div.find(".id").attr("href", "/view/" + data[i].sid);
+			div.find(".date").html("Ajouté le " + new Date(data[i].date).toLocaleDateString());
+			div.find(".fblink").attr("href", data[i].url);
+			
+			div.insertAfter($(".vellism").last());
+		}
+		
+		var n = $(window).height();
+		$('html, body').animate({ scrollTop: $(document).scrollTop() + n - 100 }, 350);
+	});
+}

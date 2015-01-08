@@ -1,0 +1,25 @@
+{
+  "name": "vella-db-web",
+  "version": "1.0.0",
+  "description": "Web Interface for the vella-db api",
+  "main": "vella-web.js",
+  "dependencies": {
+    "express": "^4.10.6",
+    "jade": "^1.8.2",
+    "moment": "^2.8.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bendardenne/velladb"
+  },
+  "author": "Benoît Dardenne",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bendardenne/velladb/issues"
+  },
+  "homepage": "https://github.com/bendardenne/velladb"
+}

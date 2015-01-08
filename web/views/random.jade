@@ -1,0 +1,15 @@
+extend base.jade
+include viewsingle
+
+block append scripts
+	script(src="../static/scripts/view.js")
+
+block content
+	h1.page-header.text-center Vellaléatoire 
+
+	.text-center
+		button.btn.btn-primary.btn-lg#refresh
+			span.glyphicon.glyphicon-repeat
+	
+	+viewsingle({text: text, url: url, date: date, sid: sid})
+		

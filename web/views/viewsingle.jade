@@ -1,0 +1,14 @@
+mixin viewsingle(json)
+	blockquote.vellism.col-md-12.col-xs-12
+		for t, index in json.text
+			if index === 0
+				p.lead.vellism-main #{t}
+			else
+				p #{t}
+
+		footer.small.pull-right
+			a.id(href="/view/#{json.sid}")= json.sid
+			|  ·  
+			span.date Ajouté le #{moment(json.date).format("DD/MM/YYYY")} 
+			|  ·  
+			a.fblink(href="#{json.url}") facebook

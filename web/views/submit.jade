@@ -1,0 +1,36 @@
+extend base.jade
+
+block append scripts
+	script(src="../static/scripts/post.js")
+
+block content
+	h1.page-header.text-center Soumettre un nouveau Vellisme.
+	form.form-horizontal(id="new")
+
+		.form-group
+			label.control-label.col-sm-2(for="url") Permalink Facebook
+			.col-sm-10
+				input.form-control#url(type="url", placeholder="URL", required)
+
+		.form-group
+			label.control-label.col-sm-2 Vellisme(s)
+			.col-sm-10 
+				.input-group.vellism-field
+					input.form-control(type="text" placeholder="Vellisme" required)
+					span.input-group-btn
+						button.btn.btn-default.remove-field(type="button") -
+			
+			.col-sm-12
+				button.btn.btn-default.pull-right.add-field(type="button") +
+		//	
+			.form-group
+				label.control-label.col-sm-2(for="imageUrl") Image URL
+				.col-sm-10
+					input.form-control#imageUrl(type="url", placeholder="URL (optionnel)")
+			
+			.form-group
+				label.control-label.col-sm-2(for="youtubeUrl") Image URL
+				.col-sm-10
+					input.form-control#youtubeUrl(type="url", placeholder="URL (optionnel)")
+		
+		input.btn.btn-primary.btn-lg.pull-right(type="submit")

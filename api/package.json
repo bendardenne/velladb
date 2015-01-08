@@ -1,0 +1,30 @@
+{
+  "name": "vella-db",
+  "version": "1.0.0",
+  "description": "VELLADB collects Very Enlightening Lyrical Logorrhea from an Absolutely Deranged Bozo.",
+  "main": "vella-db.js",
+  "dependencies": {
+    "body-parser": "^1.10.0",
+    "bson": "^0.2.16",
+    "express": "^4.10.6",
+    "mongodb": "^1.4.26",
+    "mongoose": "^3.8.21",
+    "mongoose-shortkey": "^0.0.3",
+    "mongoose-simple-random": "^0.3.0",
+    "mongoose-validators": "^0.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bendardenne/vella-db"
+  },
+  "author": "Benoît Dardenne",
+  "bugs": {
+    "url": "https://github.com/bendardenne/vella-db/issues"
+  },
+  "homepage": "https://github.com/bendardenne/vella-db",
+  "license": "ISC"
+}

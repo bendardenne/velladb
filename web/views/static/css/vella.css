@@ -1,0 +1,84 @@
+html {height : 100%; }
+
+body { height: 92%;}
+
+body > .container {
+	min-height: 92%;	
+	height: 92%;
+	height: auto !important;
+	padding-bottom: 50px;
+}
+
+footer > .container{
+	border-top: solid 1px #BBBBBB;
+}
+
+.vellism {
+	background: url("http://vella.bendardenne.be/static/img/vella.jpg") no-repeat left center;
+	background-repeat: no-repeat;
+	min-height:158px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border-right: outset 1px;	
+	quotes: "\201C" "\201D" "\2018" "\2019";
+	padding-right: 35px;
+	text-align: justify;
+}
+
+.vellism:before {
+	content: no-open-quote;
+}
+
+.vellism:after {
+	content: close-quote;
+	position : absolute;
+	top: -5px;
+	right : 5px;
+	font-size: 50px;
+	font-family: "Georgia";
+	color: #BBBBBB;
+	z-index: -1;
+}
+
+.vellism:hover {
+	background-color: #CDE9FE;
+}
+
+.vellism p:first-of-type{
+	margin-left: 165px;
+}
+
+.vellism p:last-of-type{
+	margin-bottom: 20px;
+}
+
+.vellism p:not(.lead){
+	margin-left : 200px;
+	color: #666666;
+		font-size: 85%;
+}
+
+.vellism .small {
+	position: absolute;
+	bottom : 0px;
+	right: 10px;
+	margin-top: 10px;
+	font-size: 75%;
+}
+
+@media only screen and (max-width: 768px) { 
+	.vellism { 
+		background-image: none!important; 
+		min-height: 0;
+		margin-left:0;
+		padding-left:0;
+	}
+	
+	.vellism p:first-of-type{
+		margin-left:5px;
+	}
+
+	.vellism p:not(.lead){
+		margin-left : 20px;
+	}
+} 

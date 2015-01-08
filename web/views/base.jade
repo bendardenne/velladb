@@ -1,0 +1,35 @@
+doctype html
+html(lang="en")
+
+	include header.jade
+	
+	body
+
+		nav.navbar.navbar-inverse
+			.container
+				.navbar-header
+					button.navbar-toggle.collapsed(data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar")
+						span.sr-only Toggle
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+					a.navbar-brand(href="/") VELLADB
+				#navbar.navbar-collapse.collapse
+					ul.nav.navbar-nav
+						li
+							a(href="/latest") Récents
+						li
+							a(href="/browse") Naviguer
+						li
+							a(href="/random") Aléatoire
+						li
+							a(href="/submit") Nouveau
+		
+		section.container
+			#message
+			block content
+
+
+		include footer.jade
+

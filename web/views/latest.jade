@@ -1,0 +1,16 @@
+extend base.jade
+include viewsingle
+
+block append scripts
+	script(src="../static/scripts/view.js")
+
+block content
+	h1.page-header.text-center Les derniers Vellismes
+	for vellism in vellisms 
+		+viewsingle(vellism)
+
+	.text-center.span12
+		button.btn.btn-primary.btn-lg#loadmore
+			span.glyphicon.glyphicon-circle-arrow-down
+		button.btn.btn-primary.btn-lg#goup
+			span.glyphicon.glyphicon-circle-arrow-up
