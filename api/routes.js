@@ -2,7 +2,6 @@ var app = require('./velladb-api.js');
 var Vellism = require('./models/Vellism.js');
 var express = require('express'); 
 var router = express.Router();
-var mo = require('mongoose');
 
 /* GETs */
 

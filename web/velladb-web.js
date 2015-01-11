@@ -1,6 +1,5 @@
 var express = require('express')
 var app = express();
-var router = express.Router();
 
 var routes = require('./routes.js');
 
@@ -16,7 +15,6 @@ app.set('views', './views');
 app.set('view engine', 'jade');
 
 app.locals.pretty = true;
-app.locals.api_url = 'http://vella.bendardenne.be/api'
 app.locals.moment = require('moment');
 
 app.listen(3001);

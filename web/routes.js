@@ -99,7 +99,6 @@ router.get("/latest/:limit?", function(req, res) {
 });
 
 router.get("/random", function(req, res) {
-	
 	http.request({
 		host: "localhost",
 		path: "/api/random",
@@ -115,6 +114,5 @@ router.get("/random", function(req, res) {
 			});
 	}).end();
 });
-
 
 module.exports = router;
