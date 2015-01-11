@@ -51,9 +51,11 @@ function replace(newVellism) {
 		$("<p>" + newVellism.text[i] + "</p>").insertAfter(".vellism > .lead");
 
 	var date = new Date(newVellism.date);
+	var dateS = addZero(date.getDate()) + "/"
+		+ addZero(date.getMonth() + 1) + "/" + date.getFullYear();
 	$(".id").html(newVellism.sid)	;
 	$(".id").attr("href", "/view/" + newVellism.sid);
-	$(".date").html("Ajouté le " + date.toLocaleDateString());
+	$(".date").html("Ajouté le " + dateS);
 	$(".fblink").attr("href", newVellism.url);
 }
 
@@ -69,9 +71,12 @@ function loadMore(){
 			for(var j = 1; j < data[i].text.length; j++)
 				div.append("<p>" + data[i].text[j] + "</p>");
 			
+			var date = new Date(data[i].date);
+			var dateS = addZero(date.getDate()) + "/"
+				+ addZero(date.getMonth() + 1) + "/" + date.getFullYear();
 			div.find(".id").html(data[i].sid)	;
 			div.find(".id").attr("href", "/view/" + data[i].sid);
-			div.find(".date").html("Ajouté le " + new Date(data[i].date).toLocaleDateString());
+			div.find(".date").html("Ajouté le " + dateS);
 			div.find(".fblink").attr("href", data[i].url);
 			
 			div.insertAfter($(".vellism").last());
@@ -80,4 +85,8 @@ function loadMore(){
 		var n = $(window).height();
 		$('html, body').animate({ scrollTop: $(document).scrollTop() + n - 100 }, 350);
 	});
+}
+
+function addZero(n){
+	return (n < 10 ? "0" + n :"" + n);
 }
