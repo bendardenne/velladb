@@ -31,10 +31,10 @@ router.get("/submit", function(req, res) {
 	res.render('submit');
 });
 
-router.get("/browse", function(req, res) {
+router.get("/browse/:sid?", function(req, res) {
 	http.request({
 		host: "localhost",
-		path: "/api/1",
+		path: "/api/" + (req.params.sid || 1),
 		port: "3000"
 	}, function(response) {
 			var string = "";
@@ -78,7 +78,7 @@ router.get("/view/:id", function(req, res) {
 router.get("/latest/:limit?", function(req, res) {
 	http.request({
 		host: "localhost",
-		path: "/api/latest?limit=" + (req.params.limit == null ? "10" : req.params.limit),
+		path: "/api/latest?limit=" + (req.params.limit || "10"),
 		port: "3000"
 	}, function(response) {
 			var string = "";
