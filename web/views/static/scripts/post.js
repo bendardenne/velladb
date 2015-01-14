@@ -28,6 +28,8 @@ $(document).on("ready", function() {
 	$("form").on("click", ".remove-field", function(event) {
 		if($('.vellism-field').length > 1)
 			$(this).parent().parent().remove();
+		else
+			$(".vellism-field [type=text]").val("");
 	});
 
 });
