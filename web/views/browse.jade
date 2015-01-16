@@ -7,9 +7,13 @@ block append scripts
 block content
 	h1.page-header.text-center Tout Vella
 	.text-center
+		button.btn.btn-primary.btn-lg#first
+			span.glyphicon.glyphicon-backward
 		button.btn.btn-primary.btn-lg#prev
 			span.glyphicon.glyphicon-chevron-left
 		button.btn.btn-primary.btn-lg#next
 			span.glyphicon.glyphicon-chevron-right
+		button.btn.btn-primary.btn-lg#last
+			span.glyphicon.glyphicon-forward
 		
 	+viewsingle({text: text, url: url, date: date, sid: sid})

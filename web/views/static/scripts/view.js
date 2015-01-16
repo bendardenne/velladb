@@ -2,22 +2,33 @@ $(document).on("ready", function() {
 	$("#refresh").on("click", replaceWithRandom);
 	$("#next").on("click", replaceWithNext);
 	$("#prev").on("click", replaceWithPrev);
+	$("#first").on("click", replaceWithFirst);
+	$("#last").on("click", replaceWithLast);
 	$("#loadmore").on("click", loadMore);
 	$("#goup").on("click", function(event){
 		$('html, body').animate({ scrollTop: 0}, 350);
 	});
 });
 
+function replaceWithFirst(index) {
+	$.get("http://vella.bendardenne.be/api/1", function(data) {
+		// Should still check for error...
+		replace(data);
+	});
+}
+
+function replaceWithLast(index) {
+	$.get("http://vella.bendardenne.be/api/latest?limit=1", function(data) {
+		// Should still check for error...
+		replace(data[0]);
+	});
+}
+
 function replaceWithNext(){
 	var sid = $(".id").text();
 	$.get("http://vella.bendardenne.be/api/next/" + sid, function(data) {
 		if(data.length > 0)
-		{
 			replace(data[0]);
-			$("#message").html("");
-		}
-		else
-			$("#message").html("<div class='alert alert-error alert-danger'> Aucune autre citation à montrer </div>");
 	})
 }
 
@@ -25,12 +36,7 @@ function replaceWithPrev(){
 	var sid = $(".id").text();
 	$.get("http://vella.bendardenne.be/api/prev/" + sid, function(data) {
 		if(data.length > 0)
-		{
 			replace(data[0]);
-			$("#message").html("");
-		}
-		else
-			$("#message").html("<div class='alert alert-error alert-danger'> Aucune autre citation à montrer </div>");
 	});
 }
 
