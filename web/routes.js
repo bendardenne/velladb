@@ -53,28 +53,6 @@ router.get("/browse/:sid?", function(req, res) {
 	}).end();
 });
 
-router.get("/view/:id", function(req, res) {
-	http.request({
-		host: "localhost",
-		path: "/api/" + req.params.id,
-		port: "3000"
-	}, function(response) {
-			var string = "";
-			response.on("data", function(buffer) {
-				string += buffer;
-			});
-			response.on("end", function() {
-				if(response.statusCode == 200) {
-					var json = JSON.parse(string);
-					res.render('view', json);	
-				} else {
-					var json = {res: response, err_msg: string};
-					res.render('error', json)
-				}
-			});
-	}).end();
-});
-
 router.get("/latest/:limit?", function(req, res) {
 	http.request({
 		host: "localhost",

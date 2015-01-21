@@ -60,7 +60,7 @@ function replace(newVellism) {
 	var dateS = addZero(date.getDate()) + "/"
 		+ addZero(date.getMonth() + 1) + "/" + date.getFullYear();
 	$(".id").html(newVellism.sid)	;
-	$(".id").attr("href", "/view/" + newVellism.sid);
+	$(".id").attr("href", "/browse/" + newVellism.sid);
 	$(".date").html("Ajouté le " + dateS);
 	$(".fblink").attr("href", newVellism.url);
 }
@@ -81,7 +81,7 @@ function loadMore(){
 			var dateS = addZero(date.getDate()) + "/"
 				+ addZero(date.getMonth() + 1) + "/" + date.getFullYear();
 			div.find(".id").html(data[i].sid)	;
-			div.find(".id").attr("href", "/view/" + data[i].sid);
+			div.find(".id").attr("href", "/browse/" + data[i].sid);
 			div.find(".date").html("Ajouté le " + dateS);
 			div.find(".fblink").attr("href", data[i].url);
 			

@@ -7,7 +7,7 @@ mixin viewsingle(json)
 				p #{t}
 
 		footer.small.pull-right
-			a.id(href="/view/#{json.sid}")= json.sid
+			a.id(href="/browse/#{json.sid}")= json.sid
 			|  ·  
 			span.date Ajouté le #{moment(json.date).format("DD/MM/YYYY")} 
 			|  ·  

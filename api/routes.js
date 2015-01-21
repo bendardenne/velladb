@@ -16,9 +16,9 @@ router.get("/latest", function(req, res){
 
 router.get("/random", function(req, res){
 	Vellism.findOneRandom(function(err, result) {
-			if(err)
-				return res.status(500).send("An error occured.");
-			res.send(result);
+		if(err)
+			return res.status(500).send("An error occured.");
+		res.send(result);
 	});
 });
 
