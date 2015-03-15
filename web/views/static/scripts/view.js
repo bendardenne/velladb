@@ -1,5 +1,6 @@
 $(document).on("ready", function() {
 	$("#refresh").on("click", replaceWithRandom);
+	$("#search").submit(loadSearch);
 	$("#next").on("click", replaceWithNext);
 	$("#prev").on("click", replaceWithPrev);
 	$("#first").on("click", replaceWithFirst);
@@ -90,6 +91,43 @@ function loadMore(){
 		
 		var n = $(window).height();
 		$('html, body').animate({ scrollTop: $(document).scrollTop() + n - 100 }, 350);
+	});
+}
+
+function loadSearch(){
+	// Disable form submission
+	event.preventDefault();
+
+	var query = $("#query").val();
+	$.get("http://vella.bendardenne.be/api/search/" + encodeURIComponent(query), function(data)  {
+
+		$('.vellism').remove()
+
+		var container = $('main')
+	
+		for(var i = 0; i < data.length; i++){
+			var div = $('<blockquote></blockquote>', {"class": "vellism col-md-12 col-xs-12" });
+					
+			div.append("<p class=\"vellism-main lead\">"  + data[i].text[0] + "</p>") 
+			
+			for(var j = 1; j < data[i].text.length; j++)
+				div.append("<p>" + data[i].text[j] + "</p>");
+			
+			var date = new Date(data[i].date);
+			var dateS = addZero(date.getDate()) + "/"
+				+ addZero(date.getMonth() + 1) + "/" + date.getFullYear();
+
+			var footer = $("<footer class=\"small pull-right\"></footer>"); 
+			footer.append("<a class=\"id\" href=\"/browse/" + data[i].sid + "\">" + data[i].sid + "</a> · ");
+			footer.append("<span class=\".date\"> Ajouté le " + dateS + "</span> · ");
+			footer.append("<a class=\".fblink\" href=\"" + data[i].url +"\" >facebook</a>");
+
+			div.append(footer);
+			container.append(div);
+		}
+
+		//Replace URL in address bar 
+		history.replaceState('data', 'VELLADB: ' + query, '/search/' + query);
 	});
 }
 

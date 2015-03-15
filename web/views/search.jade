@@ -1,0 +1,20 @@
+extend base.jade
+include viewsingle
+
+block append scripts
+	script(src="../static/scripts/view.js")
+
+block content
+	h1.page-header.text-center Quête spirituelle vellique
+
+	.col-xs-3
+			
+	.text-center.col-xs-6
+		form#search.input-group
+			input.form-control#query(type="text", placeholder="Recherche", required)
+			.input-group-btn
+				button.btn.btn-primary(type="submit")
+					span.glyphicon.glyphicon-search
+	
+	for result in results 
+		+viewsingle(result)

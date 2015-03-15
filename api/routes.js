@@ -22,6 +22,15 @@ router.get("/random", function(req, res){
 	});
 });
 
+// Regex options (e.g. "i") apparently don't work on arrays in 2.4
+router.get("/search/:query", function(req, res){
+	Vellism.find({text: {$regex: req.params.query }}).limit(500).exec(function(err, result) {
+			if(err)
+				return res.status(500).send("An error occured.");
+			res.send(result);
+	});
+});
+
 router.get("/prev/:sid", function(req, res){
 	var limit = req.query.limit || 1;
 	Vellism.findOne({sid: req.params.sid}, function(err, result) {

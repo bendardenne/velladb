@@ -93,4 +93,21 @@ router.get("/random", function(req, res) {
 	}).end();
 });
 
+router.get("/search/:query?", function(req, res) {
+	http.request({
+		host: "localhost",
+		path: "/api/search/" + req.params.query,
+		port: "3000",
+	}, function(response) {
+			var string = "";
+			response.on("data", function(buffer) {
+				string += buffer;
+			});
+			response.on("end", function() {
+				var json = JSON.parse(string);
+				res.render('search', {results: json});	
+			});
+	}).end();
+});
+
 module.exports = router;

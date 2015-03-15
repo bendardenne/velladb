@@ -20,4 +20,6 @@ var Vellism = new mongoose.Schema({
 Vellism.plugin(random);
 Vellism.plugin(shortid.plugin, {category : 'Vellism'});
 
+Vellism.index({text: 'text'})
+
 module.exports = mongoose.model('Vellism', Vellism)
