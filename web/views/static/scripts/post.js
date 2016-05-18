@@ -7,13 +7,16 @@ $(document).on("ready", function() {
 		$(".vellism-field input[type='text']").each(function() {
 			text[text.length] = $(this).val();
 			
-			// Remove additional fields
-			$('.vellism-field').not(':first').remove();
 		}); 
 		var url = $("#url").val();
 
 		$.post("/api/post", {text: text, url : url}, function(data){
+
+			// Empty all fields 
 			$("input:not([type='submit'])").val("");
+			// Remove additional fields
+			$('.vellism-field').not(':first').remove();
+			
 			$("#message").html("<div class='alert alert-success'>"+data+"</div>");
 		}).fail(function(jqXHR, textStatus, errorThrown) {
 			$("#message").html("<div class='alert alert-danger alert-error'>"+ errorThrown+ ": " + jqXHR.responseText +"</div>");
