@@ -6,16 +6,17 @@ $(document).on("ready", function() {
 		var text = [];
 		$(".vellism-field input[type='text']").each(function() {
 			text[text.length] = $(this).val();
+			
+			// Remove additional fields
+			$('.vellism-field').not(':first').remove();
 		}); 
-		console.log(text);
 		var url = $("#url").val();
 
 		$.post("/api/post", {text: text, url : url}, function(data){
 			$("input:not([type='submit'])").val("");
 			$("#message").html("<div class='alert alert-success'>"+data+"</div>");
 		}).fail(function(jqXHR, textStatus, errorThrown) {
-			console.log(jqXHR.responseText);
-			$("#message").html("<div class='alert alert-danger alert-error'>"+ ErrorThrown+ ": " + jqXHR.responseText +"</div>");
+			$("#message").html("<div class='alert alert-danger alert-error'>"+ errorThrown+ ": " + jqXHR.responseText +"</div>");
 		});
 	});
 

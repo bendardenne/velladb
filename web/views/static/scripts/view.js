@@ -74,7 +74,7 @@ function loadMore(){
 			
 			var div = $(".vellism").first().clone();
 			div.find(".lead").html(data[i].text[0])
-			
+			div.find("p:not(.lead)").remove()
 			for(var j = 1; j < data[i].text.length; j++)
 				div.append("<p>" + data[i].text[j] + "</p>");
 			
